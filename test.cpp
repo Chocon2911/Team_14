@@ -1,48 +1,78 @@
-#include<iostream>
-#include<string>
 #include "Account.cpp"
+#include "Menu.cpp"
 using namespace std;
-
-void shit(int a)
-{
-    a = 5;
-}
 
 int main()
 {
     Account account;
+    Menu menu;
 
-    account.setId("3hyxVbnKyg");
-    account.setIsLoggedIn(true);
+    // account.setId("3hyxVbnKyg");
+    // account.setIsLoggedIn(true);
 
-    while(account.isLoggedIn())
+    while(true)
     {
-        account.displayMenu();
-        if (account.getChoice() == '1')
-        {
-            account.accountInformation();
-        }
-        else if (account.getChoice() == '2')
-        {
-            account.withdraw();
-        }
-        else if (account.getChoice() == '3')
-        {
-            account.deposit();
-        }
-        else if (account.getChoice() == '4')
-        {
-            account.transfer();
-        }
-        else if (account.getChoice() == '5')
-        {
-            account.logout();
-        }
-        else
+        menu.displayMenu();
+        if (cin.fail())
         {
             cin.clear();
             cin.ignore(1000, '\n');
-            cout << endl << "==================invalid choice================" << endl;
+            cout << "===============================Invalid Choice=============================";
+        }
+        else
+        {
+            if(menu.getChoice() == '1')
+            {
+                menu.login();
+                while(account.isLoggedIn())
+                {
+                    account.setId(menu.getId());
+                    account.displayMenu();
+                    if (cin.fail())
+                    {
+                        cin.clear();
+                        cin.ignore(1000, '\n');
+                        cout << endl << "==================invalid choice================" << endl;
+                    }
+                    else
+                    {
+                        if (account.getChoice() == '1')
+                        {
+                            account.accountInformation();
+                        }
+                        else if (account.getChoice() == '2')
+                        {
+                            account.withdraw();
+                        }
+                        else if (account.getChoice() == '3')
+                        {
+                            account.deposit();
+                        }
+                        else if (account.getChoice() == '4')
+                        {
+                            account.transfer();
+                        }
+                        else if (account.getChoice() == '5')
+                        {
+                            account.logout();
+                        }
+                    }
+                }
+            }
+            else if(menu.getChoice() == '2')
+            {
+                menu.create();
+            }
+            else if(menu.getChoice())
+            {
+                menu.exitProgram();
+            }
+            else
+            {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << "===============================Invalid Choice=============================";
+            }
         }
     }
     return 0;

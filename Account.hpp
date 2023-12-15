@@ -21,16 +21,9 @@ class Account
     string getId();
     bool isLoggedIn();
     char getChoice();
-    int getPin();
-    float getBalance();
-    vector<string> getFriendList();
-
     void setId(string id_);
     void setIsLoggedIn(bool loggedIn_);
     void setChoice(char choice_);
-    void setPin(int pin_);
-    void setBalance(float balance_);
-    void setFriendList(vector<string> friendList_);
 
     private:
     string id;
@@ -40,6 +33,12 @@ class Account
     int pin = 0;
     float balance = 0;
     vector<string> friendList;
+    int getPin();
+    float getBalance();
+    vector<string> getFriendList();
+    void setPin(int pin_);
+    void setBalance(float balance_);
+    void setFriendList(vector<string> friendList_);
 
     void withdrawAmount(float amount);
 
