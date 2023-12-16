@@ -8,7 +8,7 @@ class Account
 {
     public:
     Account();
-    Account(string id_, bool loggedIn_, int choice_);
+    Account(string id_, bool loggedIn_, char choice_);
     ~Account();
 
     void displayMenu();
@@ -49,5 +49,5 @@ class Account
     void chooseFriendToTransfer(int choice);
 
     void readFile(string id);
-    void writeFile(int pin, float balance, vector<string> friendList);
+    void writeFile(string id,int pin, float balance, vector<string> friendList);
 };

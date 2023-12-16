@@ -8,10 +8,10 @@ Account::Account()
 {
     id = "";
     loggedIn = false;
-    choice = 0;
+    choice = '0';
 }
 
-Account::Account(string id_, bool loggedIn_, int choice_)
+Account::Account(string id_, bool loggedIn_, char choice_)
 {
     id = id_;
     loggedIn = loggedIn_;
@@ -101,10 +101,12 @@ void Account::readFile(string id_)
         file >> pin;
         file >> balance;
         string friendId;
+        vector<string> list_;
         while (file >> friendId)
         {
-            friendList.push_back(friendId);
+            list_.push_back(friendId);
         }
+        friendList = list_;
     }
     else
     {
@@ -114,9 +116,9 @@ void Account::readFile(string id_)
     file.close();
 }
 
-void Account::writeFile(int pin_, float balance_, vector<string> friendList_)
+void Account::writeFile(string id_, int pin_, float balance_, vector<string> friendList_)
 {
-    ofstream file("data/" + id + ".txt");
+    ofstream file("data/" + id_ + ".txt");
     file << pin_ << " " << balance_ << endl;
     for (int i = 0; i < friendList_.size(); i++)
     {
@@ -181,56 +183,47 @@ void Account::withdraw()
     cout << "==========================" << endl;
     cout << "Enter your Choice: ";
     cin >> choice;
-    if (cin.fail())
+    if (getChoice() == '1')
     {
-        cin.clear();
-        cin.ignore(1000, '\n');
-        cout << "==================Invalid choice!==================" << endl;
+        Account::withdrawAmount(10);
     }
-    else
+    else if (getChoice() == '2')
     {
-        if (getChoice() == 1)
+        Account::withdrawAmount(20);
+    }
+    else if (getChoice() == '3')
+    {
+        Account::withdrawAmount(50);
+    }
+    else if (getChoice() == '4')
+    {
+        Account::withdrawAmount(100);
+    }
+    else if (getChoice() == '5')
+    {
+        float amount;
+        cout << "Enter the amount you want to withdraw: ";
+        cin >> amount;
+        if (cin.fail())
         {
-            Account::withdrawAmount(10);
-        }
-        else if (getChoice() == 2)
-        {
-            Account::withdrawAmount(20);
-        }
-        else if (getChoice() == 3)
-        {
-            Account::withdrawAmount(50);
-        }
-        else if (getChoice() == 4)
-        {
-            Account::withdrawAmount(100);
-        }
-        else if (getChoice() == 5)
-        {
-            float amount;
-            cout << "Enter the amount you want to withdraw: ";
-            cin >> amount;
-            if (cin.fail())
-            {
-                cout << "==================Invalid amount!==================" << endl;
-                cin.clear();
-                cin.ignore(1000, '\n');
-            }
-            else
-            {
-                Account::withdrawAmount(amount);
-            }
-        }
-        else if (getChoice() == 6)
-        {
-            return;
-        }
-        else
-        {
-            cout << "==================Invalid choice!==================" << endl;
+            cout << "==================Invalid amount!==================" << endl;
             cin.clear();
             cin.ignore(1000, '\n');
         }
+        else
+        {
+            Account::withdrawAmount(amount);
+        }
+    }
+    else if (getChoice() == '6')
+    {
+        return;
+    }
+    else
+    {
+        cout << endl << "==================Invalid choice!==================" << endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
     }
 }
 
@@ -250,7 +243,7 @@ void Account::withdrawAmount(float amount_)
     else
     {
         Account::setBalance(Account::getBalance() - amount_);
-        Account::writeFile(Account::getPin(), Account::getBalance(), Account::getFriendList());
+        Account::writeFile(Account::getId(), Account::getPin(), Account::getBalance(), Account::getFriendList());
         cout << "your new balance is: " << Account::getBalance() << endl;
         cout << "==================Withdraw success!===============" << endl;
     }
@@ -290,7 +283,7 @@ void Account::depositAmount(float amount_)
     else
     {
         Account::setBalance(Account::getBalance() + amount_);
-        Account::writeFile(Account::getPin(), Account::getBalance(), Account::getFriendList());
+        Account::writeFile(Account::getId(), Account::getPin(), Account::getBalance(), Account::getFriendList());
         cout << "your new balance is: " << Account::getBalance() << endl;
         cout << "==================Deposit success!===============" << endl;
     }
@@ -331,7 +324,7 @@ void Account::transfer()
         {
             return;
         }
-        else
+        else if (choice_ <= Account::getFriendList().size() && choice_ > 0)
         {
             ifstream file("data/" + getFriendList()[choice_ - 1] + ".txt");
             if (!file.good())
@@ -344,6 +337,10 @@ void Account::transfer()
                 file.close();
                 Account::chooseFriendToTransfer(choice_);
             }
+        }
+        else
+        {
+            cout << "==================Invalid choice!==================" << endl;
         }
     }
 }
@@ -382,10 +379,10 @@ void Account::transferAmount(float amount_, string friendId_)
     else
     {
         Account::setBalance(Account::getBalance() - amount_);
-        Account::writeFile(Account::getPin(), Account::getBalance(), Account::getFriendList());
+        Account::writeFile(Account::getId(), Account::getPin(), Account::getBalance(), Account::getFriendList());
         Account::readFile(friendId_);
         Account::setBalance(Account::getBalance() + amount_);
-        Account::writeFile(Account::getPin(), Account::getBalance(), Account::getFriendList());
+        Account::writeFile(friendId_, Account::getPin(), Account::getBalance(), Account::getFriendList());
         cout << "you have transferred " << amount_ << " to " << friendId_ << endl;
         cout << "your new balance is: " << Account::getBalance() << endl;
         cout << "==================Transfer success!===============" << endl;
@@ -410,7 +407,7 @@ void Account::addFriend()
         {
             Account::readFile(getId());
             friendList.push_back(friendId_);
-            writeFile(Account::getPin(), Account::getBalance(), friendList);
+            writeFile(Account::getId(), Account::getPin(), Account::getBalance(), Account::getFriendList());
         }
         else
         {

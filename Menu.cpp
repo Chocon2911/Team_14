@@ -14,7 +14,7 @@ Menu::Menu()
     choice = 0;
 }
 
-Menu::Menu(string id_, bool isLoggedIn_, int choice_)
+Menu::Menu(string id_, bool isLoggedIn_, char choice_)
 {
     id = id_;
     isLoggedIn = isLoggedIn_;
@@ -165,7 +165,7 @@ void Menu::create()
         }
         else
         {
-            cout << "===========6 digit numbers only!==========" << endl;
+            cout << endl << "===========6 digit numbers only!==========" << endl;
         }
     }
 }
