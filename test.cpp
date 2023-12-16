@@ -9,6 +9,11 @@ int main()
     Account account;
     Menu menu;
 
+    //=========================Use this Account to test the program===============================
+    //Test Account: 1aPGJK9Lvk
+    //Test Pin: 123456
+    //============================================================================================
+    
     while(true)
     {
         menu.displayMenu();
