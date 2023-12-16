@@ -7,7 +7,7 @@ class Menu
 {
     public:
     Menu();
-    Menu(string id, bool isLoggedIn, char choice);
+    Menu(string id, bool isLoggedIn, int choice);
     ~Menu();
 
     void displayMenu();

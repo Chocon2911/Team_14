@@ -8,7 +8,7 @@ class Account
 {
     public:
     Account();
-    Account(string id_, bool loggedIn_, char choice_);
+    Account(string id_, bool loggedIn_, int choice_);
     ~Account();
 
     void displayMenu();

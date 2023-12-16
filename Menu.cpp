@@ -14,7 +14,7 @@ Menu::Menu()
     choice = 0;
 }
 
-Menu::Menu(string id_, bool isLoggedIn_, char choice_)
+Menu::Menu(string id_, bool isLoggedIn_, int choice_)
 {
     id = id_;
     isLoggedIn = isLoggedIn_;
