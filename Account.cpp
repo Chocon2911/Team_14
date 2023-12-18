@@ -6,12 +6,12 @@
 //================================================================================================
 Account::Account()
 {
-    id = "";
+    id;
     loggedIn = false;
-    choice = '0';
+    choice;
 }
 
-Account::Account(string id_, bool loggedIn_, char choice_)
+Account::Account(string id_, bool loggedIn_, string choice_)
 {
     id = id_;
     loggedIn = loggedIn_;
@@ -38,7 +38,7 @@ bool Account::isLoggedIn()
     return loggedIn;
 }
 
-char Account::getChoice()
+string Account::getChoice()
 {
     return choice;
 }
@@ -183,23 +183,23 @@ void Account::withdraw()
     cout << "==========================" << endl;
     cout << "Enter your Choice: ";
     cin >> choice;
-    if (getChoice() == '1')
+    if (getChoice() == "1")
     {
         Account::withdrawAmount(10);
     }
-    else if (getChoice() == '2')
+    else if (getChoice() == "2")
     {
         Account::withdrawAmount(20);
     }
-    else if (getChoice() == '3')
+    else if (getChoice() == "3")
     {
         Account::withdrawAmount(50);
     }
-    else if (getChoice() == '4')
+    else if (getChoice() == "4")
     {
         Account::withdrawAmount(100);
     }
-    else if (getChoice() == '5')
+    else if (getChoice() == "5")
     {
         float amount;
         cout << "Enter the amount you want to withdraw: ";
@@ -215,15 +215,13 @@ void Account::withdraw()
             Account::withdrawAmount(amount);
         }
     }
-    else if (getChoice() == '6')
+    else if (getChoice() == "6")
     {
         return;
     }
     else
     {
         cout << endl << "==================Invalid choice!==================" << endl;
-        cin.clear();
-        cin.ignore(1000, '\n');
     }
 }
 

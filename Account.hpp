@@ -8,7 +8,7 @@ class Account
 {
     public:
     Account();
-    Account(string id_, bool loggedIn_, char choice_);
+    Account(string id_, bool loggedIn_, string choice_);
     ~Account();
 
     void displayMenu();
@@ -20,7 +20,7 @@ class Account
 
     string getId();
     bool isLoggedIn();
-    char getChoice();
+    string getChoice();
     void setId(string id_);
     void setIsLoggedIn(bool loggedIn_);
     void setChoice(char choice_);
@@ -28,7 +28,7 @@ class Account
     private:
     string id;
     bool loggedIn;
-    char choice;
+    string choice;
 
     int pin = 0;
     float balance = 0;

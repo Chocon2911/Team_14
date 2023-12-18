@@ -7,7 +7,7 @@ class Menu
 {
     public:
     Menu();
-    Menu(string id, bool isLoggedIn, char choice);
+    Menu(string id, bool isLoggedIn, string choice);
     ~Menu();
 
     void displayMenu();
@@ -17,7 +17,7 @@ class Menu
 
     string getId();
     bool getIsLoggedIn();
-    char getChoice();
+    string getChoice();
     void setId(string id);
     void setIsLoggedIn(bool isLoggedIn);
     void setChoice(char choice);
@@ -25,7 +25,7 @@ class Menu
     private:
     string id;
     bool isLoggedIn;
-    char choice;
+    string choice;
     const string CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     void checkLogin(string id, int pin);

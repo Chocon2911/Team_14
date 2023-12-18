@@ -9,12 +9,12 @@
 //================================================================================================
 Menu::Menu()
 {
-    id = "";
+    id;
     isLoggedIn = false;
-    choice = 0;
+    choice;
 }
 
-Menu::Menu(string id_, bool isLoggedIn_, char choice_)
+Menu::Menu(string id_, bool isLoggedIn_, string choice_)
 {
     id = id_;
     isLoggedIn = isLoggedIn_;
@@ -39,7 +39,7 @@ bool Menu::getIsLoggedIn()
 {
     return isLoggedIn;
 }
-char Menu::getChoice()
+string Menu::getChoice()
 {
     return choice;
 }
