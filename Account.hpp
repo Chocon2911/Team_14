@@ -8,7 +8,7 @@ class Account
 {
     public:
     Account();
-    Account(string id_, bool loggedIn_, string choice_);
+    Account(string id_);
     ~Account();
 
     void displayMenu();
@@ -18,12 +18,12 @@ class Account
     void transfer();
     void logout();
 
-    string getId();
-    bool isLoggedIn();
-    string getChoice();
-    void setId(string id_);
-    void setIsLoggedIn(bool loggedIn_);
-    void setChoice(char choice_);
+    const string getId();
+    const bool isLoggedIn();
+    const string getChoice();
+    const void setId(string id_);
+    const void setIsLoggedIn(bool loggedIn_);
+    const void setChoice(char choice_);
 
     private:
     string id;
@@ -33,12 +33,12 @@ class Account
     int pin = 0;
     float balance = 0;
     vector<string> friendList;
-    int getPin();
-    float getBalance();
-    vector<string> getFriendList();
-    void setPin(int pin_);
-    void setBalance(float balance_);
-    void setFriendList(vector<string> friendList_);
+    const int getPin();
+    const float getBalance();
+    const vector<string> getFriendList();
+    const void setPin(int pin_);
+    const void setBalance(float balance_);
+    const void setFriendList(vector<string> friendList_);
 
     void withdrawAmount(float amount);
 

@@ -13,7 +13,8 @@ int main()
     //Test Account: 1aPGJK9Lvk
     //Test Pin: 123456
     //============================================================================================
-    
+
+    menu.randomRunRequire();    
     while(true)
     {
         menu.displayMenu();
@@ -64,5 +65,6 @@ int main()
             cout << endl << "=====================Invalid Choice=================" << endl;
         }
     }
+
     return 0;
 }

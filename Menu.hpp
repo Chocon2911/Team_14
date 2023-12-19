@@ -7,7 +7,7 @@ class Menu
 {
     public:
     Menu();
-    Menu(string id, bool isLoggedIn, string choice);
+    Menu(string id);
     ~Menu();
 
     void displayMenu();
@@ -15,12 +15,14 @@ class Menu
     void create();
     void exitProgram();
 
-    string getId();
-    bool getIsLoggedIn();
-    string getChoice();
-    void setId(string id);
-    void setIsLoggedIn(bool isLoggedIn);
-    void setChoice(char choice);
+    const string getId();
+    const bool getIsLoggedIn();
+    const string getChoice();
+    const void setId(string id);
+    const void setIsLoggedIn(bool isLoggedIn);
+    const void setChoice(char choice);
+
+    void randomRunRequire();
 
     private:
     string id;
@@ -31,6 +33,5 @@ class Menu
     void checkLogin(string id, int pin);
 
     string getRandomId();
-    void randomRunRequire();
     void createRandomIdFile(int pin);
 };

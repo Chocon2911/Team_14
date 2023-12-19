@@ -9,16 +9,13 @@
 //================================================================================================
 Menu::Menu()
 {
-    id;
     isLoggedIn = false;
-    choice;
 }
 
-Menu::Menu(string id_, bool isLoggedIn_, string choice_)
+Menu::Menu(string id_)
 {
     id = id_;
-    isLoggedIn = isLoggedIn_;
-    choice = choice_;
+    isLoggedIn = false;
 }
 
 Menu::~Menu()
@@ -31,23 +28,23 @@ Menu::~Menu()
 //================================================================================================
 //=====================================Getters and Setter=========================================
 //================================================================================================
-string Menu::getId()
+const string Menu::getId()
 {
     return id;
 }
-bool Menu::getIsLoggedIn()
+const bool Menu::getIsLoggedIn()
 {
     return isLoggedIn;
 }
-string Menu::getChoice()
+const string Menu::getChoice()
 {
     return choice;
 }
-void Menu::setId(string id_)
+const void Menu::setId(string id_)
 {
     id = id_;
 }
-void Menu::setIsLoggedIn(bool isLoggedIn_)
+const void Menu::setIsLoggedIn(bool isLoggedIn_)
 {
     isLoggedIn = isLoggedIn_;
 }
@@ -59,7 +56,7 @@ void Menu::setIsLoggedIn(bool isLoggedIn_)
 //================================================================================================
 void Menu::randomRunRequire()
 {
-    srand(time(0));
+    srand(time(NULL));
 }
 
 string Menu::getRandomId()
@@ -188,5 +185,6 @@ void Menu::createRandomIdFile(int pin_)
 //================================================================================================
 void Menu::exitProgram()
 {
+    cout << "====================Thank you for using our Application!=====================" << endl;
     exit(0);
 }

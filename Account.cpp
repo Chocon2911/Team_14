@@ -6,16 +6,13 @@
 //================================================================================================
 Account::Account()
 {
-    id;
     loggedIn = false;
-    choice;
 }
 
-Account::Account(string id_, bool loggedIn_, string choice_)
+Account::Account(string id_)
 {
     id = id_;
-    loggedIn = loggedIn_;
-    choice = choice_;
+    loggedIn = false;
 }
 
 Account::~Account()
@@ -28,62 +25,62 @@ Account::~Account()
 //===============================================================================================
 //=====================================Getters and Setters=======================================
 //===============================================================================================
-string Account::getId()
+const string Account::getId()
 {
     return id;
 }
 
-bool Account::isLoggedIn()
+const bool Account::isLoggedIn()
 {
     return loggedIn;
 }
 
-string Account::getChoice()
+const string Account::getChoice()
 {
     return choice;
 }
 
-int Account::getPin()
+const int Account::getPin()
 {
     return pin;
 }
 
-float Account::getBalance()
+const float Account::getBalance()
 {
     return balance;
 }
 
-vector<string> Account::getFriendList()
+const vector<string> Account::getFriendList()
 {
     return friendList;
 }
 
-void Account::setId(string id_)
+const void Account::setId(string id_)
 {
     id = id_;
 }
 
-void Account::setIsLoggedIn(bool loggedIn_)
+const void Account::setIsLoggedIn(bool loggedIn_)
 {
     loggedIn = loggedIn_;
 }
 
-void Account::setChoice(char choice_)
+const void Account::setChoice(char choice_)
 {
     choice = choice_;
 }
 
-void Account::setPin(int pin_)
+const void Account::setPin(int pin_)
 {
     pin = pin_;
 }
 
-void Account::setBalance(float balance_)
+const void Account::setBalance(float balance_)
 {
     balance = balance_;
 }
 
-void Account::setFriendList(vector<string> friendList_)
+const void Account::setFriendList(vector<string> friendList_)
 {
     friendList = friendList_;
 }
@@ -421,5 +418,6 @@ void Account::addFriend()
 //================================================================================================
 void Account::logout()
 {
+    cout << "===================You have logout=================" << endl;
     Account::setIsLoggedIn(false);
 }
