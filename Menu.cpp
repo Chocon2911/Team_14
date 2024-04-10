@@ -14,13 +14,14 @@ Menu::Menu()
 
 Menu::Menu(string id_)
 {
-    id = id_;
-    isLoggedIn = false;
+id = id_;
+isLoggedIn = false;
+pin = 0;
 }
 
 Menu::~Menu()
 {
-
+    
 }
 
 
@@ -40,6 +41,10 @@ const string Menu::getChoice()
 {
     return choice;
 }
+const int Menu::getPin()
+{
+    return pin;
+}
 const void Menu::setId(string id_)
 {
     id = id_;
@@ -47,6 +52,10 @@ const void Menu::setId(string id_)
 const void Menu::setIsLoggedIn(bool isLoggedIn_)
 {
     isLoggedIn = isLoggedIn_;
+}
+const void Menu::setPin(int pin_)
+{
+    pin = pin_;
 }
 
 
@@ -124,7 +133,8 @@ void Menu::login()
 void Menu::checkLogin(string id_, int pin_)
 {
     ifstream file("data/" + id +".txt");
-    if (file.good())
+    file >> pin;
+    if (file.good() && pin_ == Menu::getPin())
     {
         Menu::setIsLoggedIn(true);
     }
@@ -134,7 +144,6 @@ void Menu::checkLogin(string id_, int pin_)
         cout << "==============================Login failed!===============================" << endl;
     }
 }
-
 
 
 //================================================================================================
@@ -157,7 +166,7 @@ void Menu::create()
     {
         if (pin_ >= 100000 && pin_ <= 999999)
         {
-            createRandomIdFile(pin_);
+            Menu::createRandomIdFile(pin_);
             cout << "==========================================" << endl;
         }
         else
